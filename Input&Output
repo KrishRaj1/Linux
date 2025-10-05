@@ -1,0 +1,154 @@
+### I/O Redirection
+
+* **stdout (Standard Output)**
+
+  * `echo Hello World > peanuts.txt` → sends output to a file instead of screen. Creates the file if it doesn’t exist.
+  * `echo Hello World >> peanuts.txt` → appends output without overwriting existing content.
+
+* **stdin (Standard Input)**
+
+  * `cat < peanuts.txt > banana.txt` → uses peanuts.txt as stdin for `cat` and sends its output to banana.txt.
+
+* **stderr (Standard Error)**
+
+  * `ls /fake/directory > peanuts.txt` → stores stdout in file but errors still appear on screen.
+  * `ls /fake/directory 2> peanuts.txt` → redirects stderr to file.
+  * `ls /fake/directory > peanuts.txt 2>&1` → redirects both stdout and stderr to same file.
+  * `ls /fake/directory &> peanuts.txt` → shorter syntax to redirect both.
+  * `ls /fake/directory 2> /dev/null` → discards stderr.
+
+### Pipes and Tee
+
+* `|` → connects stdout of one command as stdin to another.
+
+  * Example: `ls -la /etc | less` → view output with `less`.
+* `tee` → writes output to file **and** passes it to stdout.
+
+  * Example: `ls | tee peanuts.txt`
+
+### Environment Variables
+
+* `echo $HOME` → home directory path.
+* `echo $USER` → username.
+* `env` → lists all environment variables.
+* Access variable → use `$VAR_NAME` (e.g., `$PATH`).
+
+### cut
+
+* Extracts text portions.
+* `cut -c 5 sample.txt` → 5th character.
+* `cut -f 2 sample.txt` → extracts second TAB-delimited field.
+* `cut -f 1 -d ";" sample.txt` → uses `;` as delimiter.
+
+### paste
+
+* Merges lines.
+* `paste -s sample2.txt` → merges lines using TAB.
+* `paste -d ' ' -s sample2.txt` → merges lines with space delimiter.
+
+### head
+
+* Shows first lines.
+* `head /var/log/syslog` → first 10 lines.
+* `head -n 15 /var/log/syslog` → first 15 lines.
+
+### tail
+
+* Shows last lines.
+* `tail /var/log/syslog` → last 10 lines.
+* `tail -n 10 /var/log/syslog` → last 10 lines.
+* `tail -f /var/log/syslog` → follows file updates in real time.
+
+### expand & unexpand
+
+* `expand sample.txt` → converts tabs to spaces.
+* `expand sample.txt > result.txt` → saves result.
+* `unexpand -a result.txt` → converts spaces back to tabs.
+
+### join & split
+
+* Combines files by matching fields.
+
+```
+file1.txt        file2.txt
+1 John           1 Doe
+2 Jane           2 Doe
+3 Mary           3 Sue
+
+join file1.txt file2.txt →
+1 John Doe
+2 Jane Doe
+3 Mary Sue
+```
+
+* Join on specific fields: `join -1 2 -2 1 file1.txt file2.txt`
+* `split somefile` → splits file into parts (default: 1000 lines per part, named x\*\*).
+
+### sort
+
+* Sorts lines.
+
+```
+file1.txt:
+dog
+cow
+cat
+elephant
+bird
+
+sort file1.txt →
+bird
+cat
+cow
+dog
+elephant
+
+sort -r file1.txt → reverse order
+sort -n file1.txt → numeric sort
+```
+
+### tr (Translate)
+
+* Translates characters.
+* `tr a-z A-Z` → converts lowercase to uppercase.
+
+### uniq (Unique)
+
+* Removes duplicate lines.
+
+```
+reading.txt:
+book
+book
+paper
+paper
+article
+article
+magazine
+
+uniq reading.txt →
+book
+paper
+article
+magazine
+
+uniq -c reading.txt → counts duplicates
+uniq -u reading.txt → unique lines only
+uniq -d reading.txt → only duplicates
+
+sort reading.txt | uniq → removes adjacent duplicate issues
+```
+
+### wc & nl
+
+* `wc /etc/passwd` → shows lines, words, bytes.
+* `wc -l /etc/passwd` → line count only.
+* `nl file1.txt` → numbers each line.
+
+### grep
+
+* Searches patterns in files.
+* `grep fox sample.txt` → finds “fox”.
+* `grep -i somepattern somefile` → case-insensitive.
+* `env | grep -i User` → searches environment variables.
+* `ls /somedir | grep '.txt$'` → searches files matching regex pattern.
