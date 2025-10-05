@@ -1,0 +1,95 @@
+
+
+Shell : Program which takes commands from keyboard to OS. (Terminal activates the shell).
+
+pwd : Print working directory (Present directory).
+
+cd : Change Directory
+      Absolute path: This is the path from the root directory (/)  For example, /home/pete/Desktop.
+      Relative path: This is the path from where you are currently in the filesystem.
+      . (current directory): This is the directory you are currently in.
+      .. (previous directory): Takes you to the directory above your current one.
+      ~ (home directory): This directory defaults to your “home directory,” such as /home/pete.
+      - (previous directory): This will take you to the previous directory you were just at.
+
+ls : List Directories | Filenames that start with . are hidden.
+     ls
+     ls /home/pete
+     ls -a  (-a flag to it a for all).
+     ls -l  This shows a detailed list of files in a long format.
+     ls -la  For all and  long.
+
+ touch : touch allows you to create new empty files.
+         touch is also used to change timestamps on existing files and directories.
+
+file : To find out what kind of file a file is, you can use the file command. It will show you a description of the file's contents.
+
+ cat : It not only displays file contents but it can combine multiple files and show you their output.
+       cat dogfile birdfile.
+
+less : less is more. (There is actually a command called more).
+       The text is displayed in a paged manner, so you can navigate through a text file page by page.
+       less /home/pete/Documents/text1.
+       Use the following commands to navigate through less:
+           q - Used to quit out of less and go back to your shell.
+           Page up, Page down, Up and Down - Navigate using the arrow keys and page keys.
+           g - Moves to the beginning of the text file.
+           G - Moves to the end of the text file.
+           /search - You can search for specific text inside the text document. Preface the words you want to search with /.
+           h - If you need a little help about how to use less while you’re in less, use help.
+
+history : To check the history of commands.
+
+clear: To Clear screen.
+
+cp : Copy
+     cp mycoolfile /home/pete/Documents/cooldocs.
+     mycoolfile is the file you want to copy, and /home/pete/Documents/cooldocs is where you are copying the file to.
+      * : the wildcard of wildcards, it's used to represent all single characters or any string.  cp *.jpg /home/pete/Pictures : copy all files with the .jpg extension
+      ? : used to represent one character.
+      [] : used to represent any character within the brackets.
+
+    cp -r Pumpkin/ /home/pete/Documents | cp on a directory that contains a couple of files to your Documents directory.
+           if you copy a file over to a directory that has the same filename, the file will be overwritten with whatever you are copying over. 
+           You can use the -i flag (interactive) to prompt you before overwriting a file.
+           cp -i mycoolfile /home/pete/Pictures.
+
+mv : Move
+      -> You can rename files like this:
+         mv oldfile newfile
+         mv file2 /home/pete/Documents | Move file like this.
+         mv file_1 file_2 /somedirectory | Move more than one file.
+         mv directory1 directory2 | Rename directories as well.
+         mv -i directory1 directory2 | If you mv a file or directory, it will overwrite anything in the same directory. So you can use the -i flag to prompt you before overwriting anything.
+         mv -b directory1 directory2 | You did want to mv a file to overwrite the previous one. You can also make a backup of that file, and it will just rename the old version with a ~.
+
+mkdir : Make Directory
+         mkdir books paintings
+         mkdir -p books/hemmingway/favorites | Make subdirectories -p (Parent flag).
+
+rm : Remove
+     rm file1
+     rm -f file1  | If you don't care about any of that, you can absolutely remove a bunch of files.
+     rm -i file   |  Prompt on whether you want to actually remove the files or directories.
+     rm -r directory | -r flag (recursive) to remove all the files and any subdirectories it may have.
+     rmdir directory | To directly remove a directory.
+
+find : To find a specific file.
+       find /home -type d -name MyFolder  | With find, you'll have to specify the directory you'll be searching in and what you're searching for.
+       find /home -type d -name MyFolder | You can specify what type of file you are trying to find.
+       
+     
+help : Help, is a built-in Bash command that provides help for other Bash commands (e.g., echo, logout, pwd).
+       help echo
+       echo --help
+
+man : You can see the manuals for a command with the man command.
+
+whatis : The whatis command provides a brief description of command-line programs.
+
+alias : If you need to type a long command many times, it's best to have an alias. To create an alias for a command, you simply specify an alias name and set it to the command.
+        alias foobar='ls -la' | Now, instead of typing ls -la, you can type foobar, and it will execute that command
+        ~/.bashrc : If you want to save or use this alias again after reboot. So save this in ~/.bashrc.
+        unalias foobar : To remove alias.
+
+exit :  To exit from the shell, you can use the exit command. Or the logout.
