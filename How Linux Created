@@ -1,0 +1,20 @@
+//Background 
+  1980s, Unix OS used widely but it was proprietry and expensive.
+
+//Free Version
+MINIX(Developed by AndrewS. Tanenbaum in 1987) was available, but it was limited.
+
+
+
+//Linux
+Linus Torvalds Starts Linux (1991)
+ -> He began writing his own operating system kernel (the core part of an OS that manages hardware and software interactions
+    GNU Project (started in 1983 by Richard Stallman) was developing free software tools—compilers, libraries, shells, etc.—but lacked a working kernel.
+    Together, GNU software + Linux kernel = GNU/Linux operating system.
+
+ -> Today, Linux powers:
+    Most web servers and cloud infrastructure.
+    Nearly all supercomputers.
+    Android phones (built on the Linux kernel).
+    Many embedded systems (routers, IoT, smart devices).
+    Popular desktop distributions (Ubuntu, Fedora, Debian, Arch, etc).
