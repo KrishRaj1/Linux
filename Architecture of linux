@@ -1,0 +1,60 @@
+//Architecture of linux
+
+
+//High Level Architecture of Linux
+ -> Linux has layered architecture
+   1. Hardware
+      -> Core cmoponents -> CPU, Memory, Hard disk, network card (Physical resources on which linux run).
+   2. Kernel
+      -> It manages the hardware and system resources.
+      -> Works as a bridge between hardware and applications(Softwares).
+      -> Provide System Calls for user application.
+    3. System libraries
+       -> Special programs that allows applications to interact with the kernel (eg: gblic).
+       -> Provide API's instead of directly acessing kernel functions.
+    4. System Utilities / User Space
+       -> User programs, shells(bash, zsh), daemons (background services), GUI, etc.
+       -> Everything the user interacts with.
+
+
+//Kernel Architecture
+  -> Type of kernel is monolithic and design is moudlar.
+      --> Monolithic : All core services (memory management, file system, process scheduling. device drivers) runs in kernel space.
+      --> Modular : Modular → Supports dynamically loadable modules (like drivers) so you don’t need to rebuild the whole kernel.
+          (A modular kernel supports dynamically loadable modules, meaning you can add/remove functionality (like drivers) at runtime without recompiling the entire kernel, making the system flexible, efficient, and maintainable.)
+
+ //Components of Kernel
+  -> Process Management : Creates, schedules and kills processes.
+  -> Memory Management (MIMU) : Handles RAM, virtual memory, paging, swapping.
+  -> File System Management → Ext4, XFS, Btrfs, FAT, NTFS (via drivers).
+  -> Device Drivers → For hardware (keyboard, disk, network, GPU).
+  -> Network Stack → Manages TCP/IP, routing, firewalls.
+  -> System Calls Interface (SCI) → Bridge between user space and kernel space.
+
+//User Space Arechitecture
+  -> Everything above kernel runs in user space.
+     --> Shell (e.g., Bash, Zsh) → Command interpreter.
+     --> System Utilities (e.g., ls, cp, systemctl).
+     --> Daemons (background services like sshd, cron).
+     --> GUI Systems (like X11 or Wayland + desktop environments such as GNOME, KDE).
+
+
+
+//Diagram Representation
++-----------------------------+
+|        Applications         |  <-- User Space
+|  (Shell, GUI, Commands)     |
++-----------------------------+
+|      System Libraries       |
+|   (glibc, API, compilers)   |
++-----------------------------+
+|          Kernel             |  <-- Kernel Space
+| Process | Memory | Filesys  |
+| Drivers | Network| Syscalls |
++-----------------------------+
+|          Hardware           |
+| (CPU, RAM, HDD, Devices)    |
++-----------------------------+
+
+User interacts with Shell/GUI → System Libraries → Kernel → Hardware.
+    
